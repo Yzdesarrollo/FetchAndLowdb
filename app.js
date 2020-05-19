@@ -86,7 +86,7 @@
 
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-const adapter = new FileSync('db.json')
+const adapter = new FileSync('db/db.json')
 const db = low(adapter)
 
 const fetch = require('node-fetch')
@@ -98,7 +98,7 @@ fetch('https://az-fn-beacon.azurewebsites.net/api/GetBeaconFunction?code=jdY0sUh
 .then(json => {
     console.log('json =>', json);
     
-    return db.defaults(json).write() 
+    return db.defaults({json}).write() 
 })
 .catch(error => {
     console.log('Ocurrio un error');
